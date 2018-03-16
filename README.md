@@ -55,6 +55,8 @@
 
 ## Install
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tiaanduplessis/named-format.svg)](https://greenkeeper.io/)
+
 ```sh
 $ npm install named-format
 # OR
