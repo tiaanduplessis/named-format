@@ -23,6 +23,6 @@
   "devDependencies": {
     "jest": "^21.0.2",
     "husky": "^1.0.0",
-    "prettier-standard": "^7.0.1"
+    "prettier-standard": "^8.0.1"
   }
 }
