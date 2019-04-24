@@ -22,7 +22,7 @@
   "author": "tiaanduplessis <tiaanduplessis@hotmail.com>",
   "devDependencies": {
     "jest": "^21.0.2",
-    "husky": "^1.0.0",
+    "husky": "^2.1.0",
     "prettier-standard": "^8.0.1"
   }
 }
