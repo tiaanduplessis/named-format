@@ -72,6 +72,18 @@ console.log(namedformat('My name is :name', { name: 'Tiaan' }))
 // My name is Tiaan
 ```
 
+Primitive string values are inserted literally, including dollar signs such as
+`$$` and `$&`:
+
+```js
+namedFormat('Value: :value', { value: '$&' })
+// Value: $&
+```
+
+Each key replaces its first matching placeholder, in object key order. A value
+containing another key's placeholder can still be replaced when that key is
+processed later.
+
 ## Contributing
 
 Contributions are welcome!
