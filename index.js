@@ -6,7 +6,10 @@ function namedformat (str = '', obj = {}) {
 
   const keys = Object.keys(obj)
 
-  return keys.reduce((acc, key) => acc.replace(`:${key}`, obj[key]), str)
+  return keys.reduce((acc, key) => {
+    const value = obj[key]
+    return acc.replace(`:${key}`, typeof value === 'string' ? () => value : value)
+  }, str)
 }
 
 module.exports = namedformat
