@@ -11,12 +11,6 @@
   <a href="https://npmjs.org/package/named-format">
   <img src="https://img.shields.io/npm/dm/named-format.svg?style=flat-square" alt="npm downloads" />
   </a>
-  <a href="https://github.com/feross/standard">
-    <img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square" alt="standard JS linter" />
-  </a>
-  <a href="https://github.com/prettier/prettier">
-    <img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square" alt="prettier code formatting" />
-  </a>
   <a href="https://travis-ci.org/tiaanduplessis/named-format">
     <img src="https://img.shields.io/travis/tiaanduplessis/named-format.svg?style=flat-square" alt="travis ci build status" />
   </a>
@@ -87,6 +81,33 @@ processed later.
 ## Contributing
 
 Contributions are welcome!
+
+### Development checks
+
+Use Node.js 22.13 or newer in the 22.x line, or Node.js 24 or newer, with
+Yarn Classic 1.22.22 for development:
+
+```sh
+yarn install --frozen-lockfile --ignore-scripts --ignore-optional
+npm test
+```
+
+`npm test` runs a nonmutating lint check followed by the 32 synchronous tests.
+`npm run lint` checks code without changing it; `npm run format` explicitly
+applies automatic style fixes. Git hooks are not installed automatically, so
+run `npm test` before committing.
+
+The test suite uses Node.js's built-in `assert` module and can also run without
+installing development dependencies:
+
+```sh
+node test.js
+```
+
+The newer Node.js requirement applies to development lint tooling only. The
+published CommonJS runtime and its dependencies are unchanged. Compatibility
+checks include the standalone tests against source and packed files on Node.js
+6, 8, 16, 20, 22 and 24; this is not a new minimum supported-version promise.
 
 1. Fork it.
 2. Create your feature branch: `git checkout -b my-new-feature`
