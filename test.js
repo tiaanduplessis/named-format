@@ -1,7 +1,25 @@
+const assert = require('assert')
 const namedFormat = require('./')
+let passed = 0
+let failed = 0
+
+// These tests are deliberately synchronous so they also run on older Node.js.
+function test (name, run) {
+  try {
+    const result = run()
+    assert(!(result && typeof result.then === 'function'), 'Tests must be synchronous')
+    passed++
+    console.log('ok - ' + name)
+  } catch (error) {
+    failed++
+    process.exitCode = 1
+    console.error('not ok - ' + name)
+    console.error(error.stack || error)
+  }
+}
 
 test('should be defined', () => {
-  expect(namedFormat).toBeDefined()
+  assert.notStrictEqual(namedFormat, undefined)
 })
 
 test('should insert properties into string', () => {
@@ -13,12 +31,10 @@ test('should insert properties into string', () => {
   }
   const result = namedFormat(str, obj)
 
-  expect(result.includes('foo')).toBe(true)
-  expect(result.includes('bar')).toBe(true)
-  expect(result.includes('baz')).toBe(true)
+  assert.strictEqual(result.includes('foo'), true)
+  assert.strictEqual(result.includes('bar'), true)
+  assert.strictEqual(result.includes('baz'), true)
 })
-
-const assert = require('assert')
 
 ;['$$', '$&', '$`', "$'", "$$ $& $` $'"].forEach(value => {
   ;[':value', 'before :value', ':value after', 'before :value after'].forEach(str => {
@@ -136,3 +152,5 @@ test('should preserve default arguments, validation and own-key behavior', () =>
   assert.strictEqual(namedFormat(':inherited :own :missing', obj), ':inherited $& :missing')
   assert.strictEqual(obj.own, '$&')
 })
+
+console.log(passed + ' passed, ' + failed + ' failed')
